@@ -62,13 +62,22 @@ function fillTemplate({ question, answer_a, answer_b, background_url }) {
     .replace('__LOGO_URL__', escapeUrl(logoUrl()));
 }
 
+async function fetchImageAsDataUri(url) {
+  const res = await fetch(url, { redirect: 'follow' });
+  if (!res.ok) throw new Error(`fetch ${url} -> HTTP ${res.status}`);
+  const ct = res.headers.get('content-type') || 'image/jpeg';
+  const buf = Buffer.from(await res.arrayBuffer());
+  return `data:${ct};base64,${buf.toString('base64')}`;
+}
+
 async function renderImage(input) {
+  const bgDataUri = await fetchImageAsDataUri(input.background_url);
   const browser = await getBrowser();
   const page = await browser.newPage();
   try {
     await page.setViewport({ width: 1000, height: 1000, deviceScaleFactor: 1 });
-    const html = fillTemplate(input);
-    await page.setContent(html, { waitUntil: 'networkidle0', timeout: 30000 });
+    const html = fillTemplate({ ...input, background_url: bgDataUri });
+    await page.setContent(html, { waitUntil: 'load', timeout: 20000 });
     const buffer = await page.screenshot({
       type: 'png',
       clip: { x: 0, y: 0, width: 1000, height: 1000 },
