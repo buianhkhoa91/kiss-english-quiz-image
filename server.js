@@ -47,10 +47,19 @@ function escapeUrl(s) {
   return String(s ?? '').replace(/'/g, "%27").replace(/"/g, '%22');
 }
 
-function logoUrl() {
+const LOGO_DATA_URI = (() => {
   const png = path.join(ASSETS_DIR, 'logo.png');
-  if (fs.existsSync(png)) return 'file://' + png;
-  return '';
+  if (!fs.existsSync(png)) {
+    console.warn('logo.png not found at', png, '- brand badge will show placeholder');
+    return '';
+  }
+  const buf = fs.readFileSync(png);
+  console.log('loaded logo.png', buf.length, 'bytes');
+  return `data:image/png;base64,${buf.toString('base64')}`;
+})();
+
+function logoUrl() {
+  return LOGO_DATA_URI;
 }
 
 function fillTemplate({ question, answer_a, answer_b, background_url }) {
