@@ -1,0 +1,17 @@
+{
+  "name": "quiz-image-server",
+  "version": "1.0.0",
+  "description": "Render quiz images for KISS English Facebook (Templated.io replacement)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "puppeteer-core": "^23.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

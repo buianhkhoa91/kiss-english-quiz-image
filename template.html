@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1000px;
+    height: 1000px;
+    overflow: hidden;
+    font-family: 'Open Sans', 'Noto Sans', 'Liberation Sans', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas {
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    background-color: #222;
+  }
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('__BACKGROUND_URL__');
+    background-size: cover;
+    background-position: center;
+  }
+  .question {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    min-height: 210px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 48px;
+    font-weight: 800;
+    color: #1F2A5C;
+    line-height: 1.18;
+    word-wrap: break-word;
+  }
+  .answer {
+    position: absolute;
+    top: 295px;
+    width: 380px;
+    height: 110px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 42px;
+    font-weight: 800;
+    color: #1F2A5C;
+  }
+  .answer-a { left: 60px; }
+  .answer-b { right: 60px; }
+  .brand {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.96);
+    padding: 6px 14px 6px 6px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .brand .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #F7B500;
+    background-image: url('__LOGO_URL__');
+    background-size: cover;
+    background-position: center;
+  }
+  .brand .text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+  .brand .name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1F2A5C;
+    letter-spacing: 0.3px;
+  }
+  .brand .handle {
+    font-size: 13px;
+    color: #555;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg"></div>
+    <div class="question">__QUESTION__</div>
+    <div class="answer answer-a">__ANSWER_A__</div>
+    <div class="answer answer-b">__ANSWER_B__</div>
+    <div class="brand">
+      <div class="avatar"></div>
+      <div class="text">
+        <div class="name">KISS ENGLISH</div>
+        <div class="handle">@kissenglishcenter</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

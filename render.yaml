@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: kiss-quiz-image
+    runtime: docker
+    region: singapore
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
